@@ -13,6 +13,7 @@ RUN dpkg --add-architecture i386 && \
     echo root:root | chpasswd &&\
     mkdir /root/.ssh && \
     mkdir /var/run/sshd && \
+    echo "AddressFamily inet" >> /etc/ssh/sshd_config && \
     sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 RUN apt-get install -y pulseaudio && echo enable-shm=no >> /etc/pulse/client.conf
